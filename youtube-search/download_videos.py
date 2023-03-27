@@ -5,7 +5,7 @@ import re
 ssl._create_default_https_context = ssl._create_stdlib_context
 
 YOUTUBE_STREAM_AUDIO = '140' # modify the value to download a different stream
-DOWNLOAD_DIR = '/Users/sunnydasgupta/code/ask-nk/youtube-search/mp4'
+DOWNLOAD_DIR = '/Users/sunnydasgupta/code/ask-nk/youtube-search/mp3'
 
 playlist = Playlist('https://www.youtube.com/watch?v=-CgXDjsV8Tc&list=UULFF2v8v8te3_u4xhIQ8tGy1g')
 
