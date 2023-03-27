@@ -1,31 +1,14 @@
 import whisper
 import torch  # pytorch install steps: pytorch.org
-from datasets import load_dataset
 from pathlib import Path
 from tqdm.auto import tqdm
 import json
+from download_videos import videos_dict
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 print(device)
 
-model = whisper.load_model("large").to(device)
-
-
-videos_meta = load_dataset(
-    "jamescalam/channel-metadata",
-    split="train"
-)
-videos_meta
-
-videos_dict = {}
-
-for row in videos_meta:
-    # create entry in dict
-    videos_dict[row['Video ID']] = {
-        'title': row['Title'],
-        'published': row['Time Published'],
-        'url': f"https://youtu.be/{row['Video ID']}"
-    }
+model = whisper.load_model("medium.en").to(device)
 
 # get list of MP3 audio files
 paths = [str(x) for x in Path('./mp3').glob('*.mp3')]
