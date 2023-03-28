@@ -3,10 +3,16 @@ import torch  # pytorch install steps: pytorch.org
 from pathlib import Path
 from tqdm.auto import tqdm
 import json
-from download_videos import videos_dict
+import pickle
+import ssl
 
+
+ssl._create_default_https_context = ssl._create_stdlib_context
 device = "cuda" if torch.cuda.is_available() else "cpu"
 print(device)
+
+with open('videos_dict.pkl', 'rb') as f:
+    videos_dict = pickle.load(f)
 
 model = whisper.load_model("medium.en").to(device)
 
